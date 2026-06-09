@@ -1,55 +1,65 @@
-import ApexCharts from 'apexcharts'
-import React, { Component } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 
-const ChartOne= () => {
-
-    const state = {
-
-        series: [33, 33, 33],
-        options: {
-            chart: {
-                position: 'left',
-
-                width: 380,
-                type: 'donut',
-            },
-            dataLabels: {
-                enabled: false
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    chart: {
-                        width: 200
-                    },
-                    legend: {
-                        show: false
-                    }
-                }
-            }],            colors: ['#D7ACD4','rgba(130,179,212,0.4)','#8F649E',],
-
+const DonutChart = ({ series, colors, labels }) => {
+  const state = {
+    series: series || [33, 33, 34],
+    options: {
+      chart: {
+        type: "donut",
+        toolbar: { show: false },
+      },
+      dataLabels: { enabled: false },
+      colors: colors || ["#D7ACD4", "rgba(130,179,212,0.4)", "#8F649E"],
+      labels: labels || ["series-1", "series-2", "series-3"],
+      legend: {
+        position: "left",
+        offsetY: 0,
+        fontSize: "12px",
+        markers: { width: 10, height: 10 },
+      },
+      responsive: [
+        {
+          breakpoint: 480,
+          options: {
+            chart: { height: 180 },
             legend: {
-                position: 'left',
-                offsetY: 0,
-                height: 230,
-            }
+              position: "bottom",
+              fontSize: "11px",
+            },
+          },
         },
+        {
+          breakpoint: 768,
+          options: {
+            chart: { height: 160 },
+            legend: {
+              position: "left",
+              fontSize: "11px",
+            },
+          },
+        },
+      ],
+      plotOptions: {
+        pie: {
+          donut: {
+            size: "65%",
+          },
+        },
+      },
+    },
+  };
 
-
-    };
-
-
-    return <div>
-
-        <Chart
-            options={state.options}
-            series={state.series}
-            type="donut"
-            height="150"
-        />
+  return (
+    <div className="w-full">
+      <Chart
+        options={state.options}
+        series={state.series}
+        type="donut"
+        height={160}
+      />
     </div>
-}
+  );
+};
 
-
-export default ChartOne
+export default DonutChart;

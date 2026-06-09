@@ -1,60 +1,65 @@
-import ApexCharts from 'apexcharts'
-import React, { Component } from "react";
+import React from "react";
 import Chart from "react-apexcharts";
 
-const ChartOne= () => {
-
-    const state = {
-        series: [{
-            name: 'ارائه نهایی شده',
-            data: [44, 55, 41, 67, 22, 43, 21, 49, 21, 14, 15, 13]
-        },  {
-            name: 'ارائه نهایی نشده',
-            data: [11, 17, 15, 15, 21, 14, 15, 13, 21, 14, 15, 13]
-        }],
-        options: {
-            chart: {
-                type: 'bar',
-                height: 350,
-                stacked: true,
-                stackType: '100%'
-            },
-            responsive: [{
-                breakpoint: 480,
-                options: {
-                    legend: {
-                        position: 'bottom',
-                        offsetX: -10,
-                        offsetY: 0
-                    }
-                }
-            }],
-            xaxis: {
-                categories: ['فروردین', 'اردیبهشت', 'خرداد', 'تیر', 'مرداد', 'شهریور', 'مهر', 'ابان', 'اذر','دی', 'بهمن', 'اسفند'],
-
-            },
-            fill: {
-                opacity: 1
-            },
-            colors: ['#D7ACD4','#8F649E'],
-
-            legend: {
-                position: 'top',
-                offsetX: 0,
-                offsetY: 0
-            },
+const ChartOne = () => {
+  const state = {
+    series: [
+      {
+        name: "Desktops",
+        data: [10, 555, 35, 51, 85, 62, 450, 91, 148],
+      },
+    ],
+    options: {
+      chart: {
+        height: "100%",
+        type: "line",
+        zoom: { enabled: false },
+        toolbar: { show: false },
+      },
+      dataLabels: { enabled: false },
+      stroke: { curve: "straight" },
+      colors: ["#7E518D"],
+      grid: {
+        row: {
+          colors: ["#f3f3f3", "transparent"],
+          opacity: 0.5,
         },
-    }
-    return <div>
+      },
+      xaxis: {
+        categories: ["۲۰۲۰", "۲۰۲۱", "۲۰۲۲", "۲۰۲۳", "۲۰۲۴", "۲۰۲۵", "۲۰۲۶"],
+        labels: {
+          style: { fontSize: "11px" },
+        },
+      },
+      yaxis: {
+        labels: {
+          style: { fontSize: "11px" },
+        },
+      },
+      responsive: [
+        {
+          breakpoint: 640,
+          options: {
+            chart: { height: 220 },
+            xaxis: {
+              labels: { style: { fontSize: "10px" } },
+            },
+          },
+        },
+      ],
+    },
+  };
 
-        <Chart
-            options={state.options}
-            series={state.series}
-            type="bar"
-            height="300"
-        />
+  return (
+    <div className="w-full">
+      <Chart
+        options={state.options}
+        series={state.series}
+        type="line"
+        height={280}
+      />
     </div>
-}
+  );
+};
 
-
-export default ChartOne
+export default ChartOne;
